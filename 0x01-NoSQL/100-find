@@ -1,1 +1,31 @@
 //Write a script that lists all documents with name starting by Holberton in the collection school
+
+#!/bin/bash
+
+# Parse the database name from the command line options
+while getopts "d:" opt; do
+  case $opt in
+    d)
+      dbname=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Check if the database name is provided
+if [ -z "$dbname" ]; then
+  echo "Error: Database name is missing."
+  echo "Usage: $0 -d <database_name>"
+  exit 1
+fi
+
+# Connect to the MongoDB database and list all documents
+mongo "$dbname" --eval 'db.school.find({ "name": /^Holberton/ })'
+

@@ -1,1 +1,5 @@
-<h1>My Solutions to tasks on 0x02. Redis basic</h1>
+##My 0x02. Redis basic
+
+## Goals
+- Learn how to use redis for basic operations
+- Learn how to use redis as a simple cache
